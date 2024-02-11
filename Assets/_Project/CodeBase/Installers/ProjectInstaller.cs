@@ -6,6 +6,8 @@ using _Project.CodeBase.Infrastructure.SceneManagement;
 using _Project.CodeBase.Infrastructure.SceneManagement.UI;
 using _Project.CodeBase.Infrastructure.States;
 using _Project.CodeBase.Infrastructure.States.GameStates;
+using _Project.CodeBase.Services.Audio;
+using _Project.CodeBase.Services.Audio.Factory;
 using _Project.CodeBase.Services.Input;
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.Services.StaticData;
@@ -67,6 +69,9 @@ namespace _Project.CodeBase.Installers
             Container
                 .BindInterfacesAndSelfTo<UIFactory>()
                 .AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<AudioFactory>()
+                .AsSingle();
         }
 
         private void BindServices()
@@ -98,6 +103,10 @@ namespace _Project.CodeBase.Installers
                 .AsSingle();
             Container
                 .BindInterfacesAndSelfTo<ScoreboardService>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<AudioService>()
                 .AsSingle();
         }
 

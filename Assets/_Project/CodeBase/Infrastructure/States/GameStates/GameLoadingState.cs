@@ -2,6 +2,7 @@
 using _Project.CodeBase.Infrastructure.Factory;
 using _Project.CodeBase.Infrastructure.SceneManagement;
 using _Project.CodeBase.Infrastructure.SceneManagement.UI;
+using _Project.CodeBase.Services.Audio;
 using _Project.CodeBase.UI.Services.Factory;
 
 namespace _Project.CodeBase.Infrastructure.States.GameStates
@@ -14,13 +15,15 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
         private readonly IAssetProvider _assetProvider;
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
+        private readonly IAudioService _audioService;
 
         public GameLoadingState(GameStateMachine gameStateMachine,
             ILoadingCurtain loadingCurtain, 
             ISceneLoader sceneLoader, 
             IAssetProvider assetProvider,
             IGameFactory gameFactory,
-            IUIFactory uiFactory)
+            IUIFactory uiFactory,
+            IAudioService audioService)
         {
             _gameStateMachine = gameStateMachine;
             _loadingCurtain = loadingCurtain;
@@ -28,6 +31,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
             _uiFactory = uiFactory;
+            _audioService = audioService;
         }
         
         public async void Enter()
@@ -36,6 +40,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             
             await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.GameplayState);
             await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.Ui);
+            await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.Audio);
             
             InitializeGameWorld();
             await _sceneLoader.Load(AssetName.Scenes.GameplayScene, EnterGameplayState);
@@ -59,6 +64,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             
             _gameFactory.CreateGameplayController();
             _uiFactory.CreateUIRoot();
+            _audioService.Initialize();
         }
 
         private void EnterGameplayState() => _gameStateMachine.Enter<GameplayState>();

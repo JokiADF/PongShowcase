@@ -7,6 +7,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
             public const string Configs = "Configs";
             public const string GameplayState = "GameplayState";
             public const string Ui = "UI";
+            public const string Audio = "Audio";
         }
 
         public class Scenes
@@ -34,6 +35,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
 
         public class Audio
         {
+            public const string Music = "Music";
         }
     }
 }

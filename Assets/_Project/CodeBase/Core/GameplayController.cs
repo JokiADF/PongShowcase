@@ -2,6 +2,7 @@
 using _Project.CodeBase.Core.Racket;
 using _Project.CodeBase.Core.Services.BallTracker;
 using _Project.CodeBase.Core.Services.GameScoring;
+using _Project.CodeBase.Services.Audio;
 using _Project.CodeBase.Services.StaticData;
 using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
@@ -19,17 +20,20 @@ namespace _Project.CodeBase.Core
         private IStaticDataService _staticData;
         private IGameScoringService _gameScoringService;
         private IScreenService _screenService;
+        private IAudioService _audioService;
 
         [Inject]
         private void Construct(IBallTrackerService ballTracker, 
             IStaticDataService staticData,
             IGameScoringService gameScoringService,
-            IScreenService screenService)
+            IScreenService screenService,
+            IAudioService audioService)
         {
             _ballTracker = ballTracker;
             _staticData = staticData;
             _gameScoringService = gameScoringService;
             _screenService = screenService;
+            _audioService = audioService;
         }
 
         public void Initialize(RacketBehaviour player, RacketBehaviour bot, BallBehaviour ball)
@@ -50,12 +54,16 @@ namespace _Project.CodeBase.Core
             Subscribe();
             
             _ball.TakeFly();
+            
+            _audioService.PlayMusic();
         }
 
         public void EndGame()
         {
             SetActiveObjects(false);
             Unsubscribe();
+            
+            _audioService.StopMusic();
         }
 
         private void ResetObjectsPosition()
@@ -77,6 +85,7 @@ namespace _Project.CodeBase.Core
             _gameScoringService.OnUpdateBotScore += CheckAttempts;
             _ballTracker.PlayerScored += RetakeFlyBall;
             _ballTracker.BotScored += RetakeFlyBall;
+            _ballTracker.BotScored += OnHit;
         }
 
         private void Unsubscribe()
@@ -84,6 +93,7 @@ namespace _Project.CodeBase.Core
             _gameScoringService.OnUpdateBotScore -= CheckAttempts;
             _ballTracker.PlayerScored -= RetakeFlyBall;
             _ballTracker.BotScored -= RetakeFlyBall;
+            _ballTracker.BotScored -= OnHit;
         }
 
         private void RetakeFlyBall()
@@ -91,6 +101,10 @@ namespace _Project.CodeBase.Core
             _ball.TakeFly();
         }
 
+        private void OnHit()
+        {
+            _audioService.DuckMusic(0.05f, 1.25f);
+        }
         private void CheckAttempts(int score)
         {
             if (score >= _staticData.Level.playerAttempts)

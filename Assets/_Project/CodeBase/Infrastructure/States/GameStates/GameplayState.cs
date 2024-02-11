@@ -35,6 +35,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             
             await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameplayState);
             await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.Ui);
+            await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.Audio);
         }
     }
 }

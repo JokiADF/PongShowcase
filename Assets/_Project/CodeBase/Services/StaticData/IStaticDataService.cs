@@ -1,4 +1,5 @@
-﻿using _Project.CodeBase.Data.Configs;
+﻿using _Project.CodeBase.Configs;
+using _Project.CodeBase.Data.Configs;
 using Cysharp.Threading.Tasks;
 
 namespace _Project.CodeBase.Services.StaticData
@@ -8,7 +9,8 @@ namespace _Project.CodeBase.Services.StaticData
         UniTask InitializeAsync();
         PlayerConfig Player { get; }
         BotConfig Bot { get; }
-        LevelConfig Level { get; }
         BallConfig Ball { get; }
+        LevelConfig Level { get; }
+        AudioConfig Audio { get; }
     }
 }

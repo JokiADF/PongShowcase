@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _Project.CodeBase.Configs;
 using _Project.CodeBase.Data.Configs;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Log;
@@ -16,7 +17,8 @@ namespace _Project.CodeBase.Services.StaticData
         public BotConfig Bot { get; private set; }
         public BallConfig Ball { get; private set; }
         public LevelConfig Level { get; private set; }
-        
+        public AudioConfig Audio { get; private set; }
+
         public StaticDataService(IAssetProvider assetProvider, ILogService log)
         {
             _assetProvider = assetProvider;
@@ -29,13 +31,23 @@ namespace _Project.CodeBase.Services.StaticData
             {
                 LoadLevelConfig(),
                 LoadPlayerConfig(),
-                LoadBallConfig(),
                 LoadBotConfig(),
+                LoadBallConfig(),
+                LoadAudioConfig()
             };
 
             await UniTask.WhenAll(tasks);
             
             _log.Log("Static data loaded");
+        }
+
+        private async UniTask LoadAudioConfig()
+        {
+            var configs = await GetConfigs<AudioConfig>();
+            if(configs.Length > 0)
+                Audio = configs.First();
+            else
+                _log.LogError("There are no audio config founded!");
         }
 
         private async UniTask LoadLevelConfig()
@@ -56,15 +68,6 @@ namespace _Project.CodeBase.Services.StaticData
                 _log.LogError("There are no player config founded!");
         }
 
-        private async UniTask LoadBallConfig()
-        {
-            var configs = await GetConfigs<BallConfig>();
-            if(configs.Length > 0)
-                Ball = configs.First();
-            else
-                _log.LogError("There are no ball config founded!");
-        }
-
         private async UniTask LoadBotConfig()
         {
             var configs = await GetConfigs<BotConfig>();
@@ -72,6 +75,15 @@ namespace _Project.CodeBase.Services.StaticData
                 Bot = configs.First();
             else
                 _log.LogError("There are no bot config founded!");
+        }
+
+        private async UniTask LoadBallConfig()
+        {
+            var configs = await GetConfigs<BallConfig>();
+            if(configs.Length > 0)
+                Ball = configs.First();
+            else
+                _log.LogError("There are no ball config founded!");
         }
 
         private async UniTask<TConfig[]> GetConfigs<TConfig>() where TConfig : class
