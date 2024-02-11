@@ -1,8 +1,9 @@
-﻿using CodeBase.Infrastructure.States;
+﻿using _Project.CodeBase.Infrastructure.States;
+using _Project.CodeBase.Infrastructure.States.GameStates;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Infrastructure
+namespace _Project.CodeBase.Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour
     {
@@ -20,7 +21,6 @@ namespace CodeBase.Infrastructure
         {
             _gameStateMachine.RegisterState(_statesFactory.Create<GameBootstrapState>());
             _gameStateMachine.RegisterState(_statesFactory.Create<GameLoadingState>());
-            _gameStateMachine.RegisterState(_statesFactory.Create<GameHubState>());
             _gameStateMachine.RegisterState(_statesFactory.Create<GameplayState>());
             
             _gameStateMachine.Enter<GameBootstrapState>();

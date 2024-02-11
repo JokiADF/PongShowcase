@@ -1,6 +1,4 @@
-using UnityEngine.AddressableAssets;
-
-namespace CodeBase.Services.AssetManagement
+namespace _Project.CodeBase.Infrastructure.AssetManagement
 {
     public static class AssetName
     {
@@ -8,39 +6,28 @@ namespace CodeBase.Services.AssetManagement
         {
             public const string Configs = "Configs";
             public const string GameLoadingState = "GameLoadingState";
-            public const string GameHubState = "GameHubState";
-            public const string GameLoopState = "GameLoopState";
+            public const string GameplayState = "GameplayState";
         }
 
         public class Scenes
         {
-            public const string GameLoadingScene = "1GameLoading";
-            public const string GameHubScene = "2GameHub";
-            public const string GameLoopScene = "3GameLoop";
+            public const string GameplayScene = "1.Gameplay";
         }
         
         public class Objects
         {
+            public const string GameplayController = "GameplayController";
             public const string Player = "Player";
-            public const string Enemy = "Enemy";
+            public const string Bot = "Bot";
+            public const string Ball = "Ball";
         }
 
         public class UI
         {
-            public static string HUD = "HUD";
         }
 
         public class Audio
         {
-            public const string Click = "Click";
-            public const string Music = "Music";
-            public const string Clash = "Clash";
-            public const string Explosion = "Explosion";
-        }
-
-        public class Materials
-        {
-            public const string Background = "Background";
         }
     }
 }

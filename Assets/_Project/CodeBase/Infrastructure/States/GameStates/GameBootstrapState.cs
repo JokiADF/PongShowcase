@@ -1,8 +1,8 @@
-﻿using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.StaticDataService;
+﻿using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Services.StaticData;
 using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Infrastructure.States
+namespace _Project.CodeBase.Infrastructure.States.GameStates
 {
     public class GameBootstrapState : IState
     {
@@ -23,16 +23,15 @@ namespace CodeBase.Infrastructure.States
         {
             await InitializeServices();
             
-            _gameStateMachine.Enter<GameHubState>();
+            _gameStateMachine.Enter<GameLoadingState>();
         }
+
+        public void Exit() {}
 
         private async UniTask InitializeServices()
         {
             await _assetProvider.InitializeAsync();
             await _staticDataService.InitializeAsync();
         }
-
-        public UniTask Exit() =>
-            default;
     }
 }

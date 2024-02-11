@@ -1,46 +1,39 @@
-﻿using _Project.CodeBase.Infrastructure.SceneManagement.UI;
-using _Project.CodeBase.Services.Pool;
-using _Project.Scripts.Infrastructure.SceneManagement;
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.AssetManagement;
-using Cysharp.Threading.Tasks;
+﻿using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Infrastructure.Factory;
+using _Project.CodeBase.Infrastructure.SceneManagement.UI;
 
-namespace CodeBase.Infrastructure.States
+namespace _Project.CodeBase.Infrastructure.States.GameStates
 {
     public class GameplayState : IState
     {
         private readonly ILoadingCurtain _loadingCurtain;
-        private readonly ISceneLoader _sceneLoader;
         private readonly IAssetProvider _assetProvider;
-        private readonly IPoolingService _poolingService;
+        private readonly IGameFactory _gameFactcory;
 
-        public GameplayState(ILoadingCurtain loadingCurtain, 
-            ISceneLoader sceneLoader,
+        public GameplayState(ILoadingCurtain loadingCurtain,
             IAssetProvider assetProvider,
-            IPoolingService poolingService)
+            IGameFactory gameFactcory)
         {
             _loadingCurtain = loadingCurtain;
-            _sceneLoader = sceneLoader;
             _assetProvider = assetProvider;
-            _poolingService = poolingService;
+            _gameFactcory = gameFactcory;
         }
         
-        public async void Enter()
+        public void Enter()
         {
             _loadingCurtain.Show();
-            
-            await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.GameLoopState);
-            await _sceneLoader.Load(AssetName.Scenes.GameLoopScene);
             
             _loadingCurtain.Hide();
+            
+            _gameFactcory.CreateGameplayController().StartGame();
         }
 
-        public async UniTask Exit()
+        public async void Exit()
         {
             _loadingCurtain.Show();
+            _assetProvider.Cleanup();
             
-            _poolingService.Cleanup();
-            await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameLoopState);
+            await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameplayState);
         }
     }
 }

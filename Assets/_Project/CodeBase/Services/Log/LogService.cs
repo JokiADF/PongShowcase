@@ -1,5 +1,4 @@
-﻿using CodeBase.Services.LogService;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Project.CodeBase.Services.Log
 {

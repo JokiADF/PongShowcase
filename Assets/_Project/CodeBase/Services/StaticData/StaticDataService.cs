@@ -1,53 +1,77 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.AssetManagement;
-using CodeBase.Services.LogService;
-using CodeBase.Services.StaticDataService.Configs;
+using _Project.CodeBase.Configs;
+using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Services.Log;
 using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services.StaticDataService
+namespace _Project.CodeBase.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly ILogService _logService;
+        private readonly ILogService _log;
 
-        private PlayerConfig _player;
-        private Dictionary<int, LevelConfig> _levels;
-
-        public StaticDataService(IAssetProvider assetProvider, ILogService logService)
+        public PlayerConfig Player { get; private set; }
+        public BotConfig Bot { get; private set; }
+        public BallConfig Ball { get; private set; }
+        public LevelConfig Level { get; private set; }
+        
+        public StaticDataService(IAssetProvider assetProvider, ILogService log)
         {
             _assetProvider = assetProvider;
-            _logService = logService;
+            _log = log;
         }
 
         public async UniTask InitializeAsync()
         {
             var tasks = new List<UniTask>
             {
+                LoadLevelConfig(),
                 LoadPlayerConfig(),
-                LoadLevelConfigs()
+                LoadBallConfig(),
+                LoadBotConfig(),
             };
 
             await UniTask.WhenAll(tasks);
             
-            _logService.Log("Static data loaded");
+            _log.Log("Static data loaded");
         }
-        
+
+        private async UniTask LoadLevelConfig()
+        {
+            var configs = await GetConfigs<LevelConfig>();
+            if(configs.Length > 0)
+                Level = configs.First();
+            else
+                _log.LogError("There are no level config founded!");
+        }
+
         private async UniTask LoadPlayerConfig()
         {
             var configs = await GetConfigs<PlayerConfig>();
             if(configs.Length > 0)
-                _player = configs.First();
+                Player = configs.First();
             else
-                _logService.LogError("There are no player config founded!");
+                _log.LogError("There are no player config founded!");
         }
-        
-        private async UniTask LoadLevelConfigs()
+
+        private async UniTask LoadBallConfig()
         {
-            var configs = await GetConfigs<LevelConfig>();
-            _levels = configs.ToDictionary(config => config.level, config => config);
+            var configs = await GetConfigs<BallConfig>();
+            if(configs.Length > 0)
+                Ball = configs.First();
+            else
+                _log.LogError("There are no ball config founded!");
+        }
+
+        private async UniTask LoadBotConfig()
+        {
+            var configs = await GetConfigs<BotConfig>();
+            if(configs.Length > 0)
+                Bot = configs.First();
+            else
+                _log.LogError("There are no bot config founded!");
         }
 
         private async UniTask<TConfig[]> GetConfigs<TConfig>() where TConfig : class

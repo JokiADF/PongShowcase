@@ -1,9 +1,14 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using _Project.CodeBase.Configs;
+using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services.StaticDataService
+namespace _Project.CodeBase.Services.StaticData
 {
     public interface IStaticDataService
     {
         UniTask InitializeAsync();
+        PlayerConfig Player { get; }
+        BotConfig Bot { get; }
+        LevelConfig Level { get; }
+        BallConfig Ball { get; }
     }
 }

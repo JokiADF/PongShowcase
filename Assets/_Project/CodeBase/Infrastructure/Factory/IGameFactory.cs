@@ -1,10 +1,14 @@
-using Cysharp.Threading.Tasks;
-using UnityEngine;
+using _Project.CodeBase.Core;
+using _Project.CodeBase.Core.Ball;
+using _Project.CodeBase.Core.Racket;
 
-namespace CodeBase.Infrastructure.Factory
+namespace _Project.CodeBase.Infrastructure.Factory
 {
     public interface IGameFactory
     {
-        UniTask<GameObject> CreateHUD();
+        GameplayController CreateGameplayController();
+        BallBehaviour CreateBall();
+        RacketBehaviour CreatePlayer();
+        RacketBehaviour CreateBot();
     }
 }

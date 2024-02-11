@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: fcba571fff7743b4bb5ce8b869f5799d
+  m_SerializeEntries:
+  - m_GUID: e4e573019fb004842afc8f358774a6de
+    m_Address: 1.Gameplay
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scenes
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2c2a814e1d7f7d45985e2c9e869ae8c
+    m_Address: GameplayController
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayState
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2576e7c33ae98846a1748a87a4917f7
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayState
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 565bb626d41f96f459688472f2e480e0
+    m_Address: Bot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayState
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f3597e118fe9f84e9906788daecbac6
+    m_Address: Ball
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayState
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8604771a4e3b8d418fbd3733de349e0
+    m_Address: BallConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b85064d01c1e82e4bb835a528786b5f1
+    m_Address: BotConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ab098f6f7a00f741bfc95a454988366
+    m_Address: LevelConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3f6b1aff14eaf340b0518ebed7bf94d
+    m_Address: PlayerConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8833391dee0517b4891ef59b4ffcfb52, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ba4e87eedd72c1a49b350b4500fabcb8, type: 2}
+    - {fileID: 11400000, guid: 3caa184bb395df74c8a69cd991a0ae58, type: 2}

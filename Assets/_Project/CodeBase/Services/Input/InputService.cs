@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.CodeBase.Services.InputService
+namespace _Project.CodeBase.Services.Input
 {
     public abstract class InputService : IInputService
     {
@@ -10,6 +10,6 @@ namespace _Project.CodeBase.Services.InputService
         public abstract Vector2 Axis { get; }
         
         protected static Vector2 InputAxis() => 
-            new(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
+            new(UnityEngine.Input.GetAxis(Horizontal), UnityEngine.Input.GetAxis(Vertical));
     }
 }

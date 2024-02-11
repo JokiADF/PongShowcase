@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Services.LogService
+﻿namespace _Project.CodeBase.Services.Log
 {
     public interface ILogService
     {
