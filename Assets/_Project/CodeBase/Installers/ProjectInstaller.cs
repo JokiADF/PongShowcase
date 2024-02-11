@@ -9,7 +9,9 @@ using _Project.CodeBase.Infrastructure.States.GameStates;
 using _Project.CodeBase.Services.Input;
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.Services.StaticData;
+using _Project.CodeBase.Services.Storage;
 using _Project.CodeBase.UI.Services.Factory;
+using _Project.CodeBase.UI.Services.Scoreboard;
 using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
 using Zenject;
@@ -76,7 +78,10 @@ namespace _Project.CodeBase.Installers
             Container
                 .BindInterfacesAndSelfTo<StandaloneInputService>()
                 .AsSingle();
-        
+
+            Container
+                .BindInterfacesAndSelfTo<StorageService>()
+                .AsSingle();
             Container
                 .BindInterfacesAndSelfTo<StaticDataService>()
                 .AsSingle();
@@ -90,6 +95,9 @@ namespace _Project.CodeBase.Installers
 
             Container
                 .BindInterfacesAndSelfTo<ScreenService>()
+                .AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<ScoreboardService>()
                 .AsSingle();
         }
 

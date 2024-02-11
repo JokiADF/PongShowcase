@@ -1,6 +1,7 @@
 ﻿using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.Services.StaticData;
+using _Project.CodeBase.UI.Elements;
 using _Project.CodeBase.UI.Screens;
 using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
@@ -44,7 +45,11 @@ namespace _Project.CodeBase.UI.Services.Factory
             
             return screen;
         }
-        
+
+        public ScoreItemText CreateScoreItemText(Transform parent) =>
+            InstantiatePrefabForComponent<ScoreItemText>(AssetName.UI.ScoreItemText, parent);
+
+
         private GameObject InstantiatePrefab(string assetName)
         {
             var prefab = _assets.Get<GameObject>(assetName);

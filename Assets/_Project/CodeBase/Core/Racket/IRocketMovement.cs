@@ -1,4 +1,4 @@
-using _Project.CodeBase.Configs;
+using _Project.CodeBase.Data.Configs;
 using UnityEngine;
 
 namespace _Project.CodeBase.Core.Racket

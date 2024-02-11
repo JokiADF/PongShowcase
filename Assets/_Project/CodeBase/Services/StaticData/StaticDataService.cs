@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using _Project.CodeBase.Configs;
+using _Project.CodeBase.Data.Configs;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Log;
 using Cysharp.Threading.Tasks;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.CodeBase.Configs
+namespace _Project.CodeBase.Data.Configs
 {
     public abstract class RacketConfig: ScriptableObject
     {

@@ -29,6 +29,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
             public const string Scoreboard = "Scoreboard";
             public const string HUD = "HUD";
             public const string Result = "Result";
+            public const string ScoreItemText = "ScoreItemText";
         }
 
         public class Audio

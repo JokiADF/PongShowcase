@@ -1,6 +1,6 @@
-﻿using _Project.CodeBase.UI.Screens;
+﻿using _Project.CodeBase.UI.Elements;
+using _Project.CodeBase.UI.Screens;
 using _Project.CodeBase.UI.Services.Screens;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _Project.CodeBase.UI.Services.Factory
@@ -10,5 +10,6 @@ namespace _Project.CodeBase.UI.Services.Factory
     void CreateUIRoot();
     
     ScreenBase CreateWindow(ScreenId screenId);
+    ScoreItemText CreateScoreItemText(Transform parent);
   }
 }

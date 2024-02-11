@@ -95,6 +95,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c83c077a8cc2ca4aaaf63a0c5eb26df
+    m_Address: Scoreboard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 940c7f5766511b540bad4beb3537d961
+    m_Address: ScoreItemText
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8833391dee0517b4891ef59b4ffcfb52, type: 2}
   m_SchemaSet:

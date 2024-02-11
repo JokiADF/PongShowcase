@@ -1,4 +1,4 @@
-﻿using _Project.CodeBase.Configs;
+﻿using _Project.CodeBase.Data.Configs;
 using Cysharp.Threading.Tasks;
 
 namespace _Project.CodeBase.Services.StaticData

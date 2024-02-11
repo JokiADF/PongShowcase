@@ -1,4 +1,4 @@
-﻿using _Project.CodeBase.Configs;
+﻿using _Project.CodeBase.Data.Configs;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
