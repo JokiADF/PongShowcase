@@ -1,4 +1,5 @@
-﻿using _Project.CodeBase.Data.Configs;
+﻿using System;
+using _Project.CodeBase.Data.Configs;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,7 +34,7 @@ namespace _Project.CodeBase.Core.Ball
         private void FixedUpdate() => 
             Move();
 
-        private void OnCollisionEnter(Collision collision) => 
+        private void OnCollisionEnter2D(Collision2D collision) => 
             Clash(collision.GetContact(0).normal);
 
         private void AddStartingForce()
