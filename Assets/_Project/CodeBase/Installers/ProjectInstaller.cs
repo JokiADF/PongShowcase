@@ -1,5 +1,5 @@
 using _Project.CodeBase.Core.Services.BallTracker;
-using _Project.CodeBase.Core.Services.Scores;
+using _Project.CodeBase.Core.Services.GameScoring;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Infrastructure.Factory;
 using _Project.CodeBase.Infrastructure.SceneManagement;
@@ -9,6 +9,8 @@ using _Project.CodeBase.Infrastructure.States.GameStates;
 using _Project.CodeBase.Services.Input;
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.Services.StaticData;
+using _Project.CodeBase.UI.Services.Factory;
+using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +26,7 @@ namespace _Project.CodeBase.Installers
             BindLoadingCurtains();
 
             BindAssetProvider();
-            BindGameFactory();
+            BindFactory();
             
             BindServices();
         
@@ -55,10 +57,13 @@ namespace _Project.CodeBase.Installers
                 .AsCached();
         }
 
-        private void BindGameFactory()
+        private void BindFactory()
         {
             Container
                 .BindInterfacesAndSelfTo<GameFactory>()
+                .AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<UIFactory>()
                 .AsSingle();
         }
 
@@ -81,6 +86,10 @@ namespace _Project.CodeBase.Installers
                 .AsSingle();
             Container
                 .BindInterfacesAndSelfTo<BallTrackerService>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<ScreenService>()
                 .AsSingle();
         }
 

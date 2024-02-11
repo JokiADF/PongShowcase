@@ -1,8 +1,9 @@
 ﻿using _Project.CodeBase.Core.Ball;
 using _Project.CodeBase.Core.Racket;
 using _Project.CodeBase.Core.Services.BallTracker;
-using _Project.CodeBase.Core.Services.Scores;
+using _Project.CodeBase.Core.Services.GameScoring;
 using _Project.CodeBase.Services.StaticData;
+using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
 using Zenject;
 
@@ -17,15 +18,18 @@ namespace _Project.CodeBase.Core
         private IBallTrackerService _ballTracker;
         private IStaticDataService _staticData;
         private IGameScoringService _gameScoringService;
+        private IScreenService _screenService;
 
         [Inject]
         private void Construct(IBallTrackerService ballTracker, 
             IStaticDataService staticData,
-            IGameScoringService gameScoringService)
+            IGameScoringService gameScoringService,
+            IScreenService screenService)
         {
             _ballTracker = ballTracker;
             _staticData = staticData;
             _gameScoringService = gameScoringService;
+            _screenService = screenService;
         }
 
         public void Initialize(RacketBehaviour player, RacketBehaviour bot, BallBehaviour ball)
@@ -93,10 +97,8 @@ namespace _Project.CodeBase.Core
                 OnPlayerLose();
         }
 
-        private void OnPlayerLose()
-        {
-            EndGame();
-        }
-        
+        private void OnPlayerLose() =>
+            _screenService.Open(ScreenId.Result);
+
     }
 }

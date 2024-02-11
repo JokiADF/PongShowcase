@@ -1,7 +1,7 @@
 using System;
 using _Project.CodeBase.Core.Services.BallTracker;
 
-namespace _Project.CodeBase.Core.Services.Scores
+namespace _Project.CodeBase.Core.Services.GameScoring
 {
     public class GameScoringService : IGameScoringService
     {

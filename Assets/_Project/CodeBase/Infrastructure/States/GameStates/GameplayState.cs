@@ -1,6 +1,6 @@
 ﻿using _Project.CodeBase.Infrastructure.AssetManagement;
-using _Project.CodeBase.Infrastructure.Factory;
 using _Project.CodeBase.Infrastructure.SceneManagement.UI;
+using _Project.CodeBase.UI.Services.Screens;
 
 namespace _Project.CodeBase.Infrastructure.States.GameStates
 {
@@ -8,24 +8,24 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
     {
         private readonly ILoadingCurtain _loadingCurtain;
         private readonly IAssetProvider _assetProvider;
-        private readonly IGameFactory _gameFactcory;
+        private readonly IScreenService _screenService;
 
         public GameplayState(ILoadingCurtain loadingCurtain,
             IAssetProvider assetProvider,
-            IGameFactory gameFactcory)
+            IScreenService screenService)
         {
             _loadingCurtain = loadingCurtain;
             _assetProvider = assetProvider;
-            _gameFactcory = gameFactcory;
+            _screenService = screenService;
         }
         
         public void Enter()
         {
             _loadingCurtain.Show();
             
-            _loadingCurtain.Hide();
+            _screenService.Open(ScreenId.Menu);
             
-            _gameFactcory.CreateGameplayController().StartGame();
+            _loadingCurtain.Hide();
         }
 
         public async void Exit()
@@ -34,6 +34,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             _assetProvider.Cleanup();
             
             await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameplayState);
+            await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.Ui);
         }
     }
 }
