@@ -1,5 +1,6 @@
 using _Project.CodeBase.Core.Services.BallTracker;
 using _Project.CodeBase.Core.Services.GameScoring;
+using _Project.CodeBase.Gameplay.Services.CameraShake;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Infrastructure.Factory;
 using _Project.CodeBase.Infrastructure.SceneManagement;
@@ -100,6 +101,9 @@ namespace _Project.CodeBase.Installers
                 .AsSingle();
             Container
                 .BindInterfacesAndSelfTo<BallTrackerService>()
+                .AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<CameraShakerService>()
                 .AsSingle();
 
             Container

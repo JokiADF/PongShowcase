@@ -108,7 +108,7 @@ MonoBehaviour:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8998c9932dda574459fba60050b3a240
-    m_Address: Explosion
+    m_Address: ExplosionSound
     m_ReadOnly: 0
     m_SerializedLabels:
     - Audio
@@ -130,6 +130,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58e6377ebcac4a8409610e6686ed382b
+    m_Address: AudioConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 609ff9d96b689984da3a0b0df295fd80
+    m_Address: ExplosionObject
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayState
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8833391dee0517b4891ef59b4ffcfb52, type: 2}

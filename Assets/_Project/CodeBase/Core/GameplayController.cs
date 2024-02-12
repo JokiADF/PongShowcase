@@ -2,6 +2,7 @@
 using _Project.CodeBase.Core.Racket;
 using _Project.CodeBase.Core.Services.BallTracker;
 using _Project.CodeBase.Core.Services.GameScoring;
+using _Project.CodeBase.Gameplay.Services.CameraShake;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Audio;
 using _Project.CodeBase.Services.StaticData;
@@ -22,19 +23,22 @@ namespace _Project.CodeBase.Core
         private IGameScoringService _gameScoringService;
         private IScreenService _screenService;
         private IAudioService _audioService;
+        private ICameraShakerService _cameraShakerService;
 
         [Inject]
         private void Construct(IBallTrackerService ballTracker, 
             IStaticDataService staticData,
             IGameScoringService gameScoringService,
             IScreenService screenService,
-            IAudioService audioService)
+            IAudioService audioService,
+            ICameraShakerService cameraShakerService)
         {
             _ballTracker = ballTracker;
             _staticData = staticData;
             _gameScoringService = gameScoringService;
             _screenService = screenService;
             _audioService = audioService;
+            _cameraShakerService = cameraShakerService;
         }
 
         public void Initialize(RacketBehaviour player, RacketBehaviour bot, BallBehaviour ball)
@@ -105,6 +109,7 @@ namespace _Project.CodeBase.Core
 
         private void OnHit()
         {
+            _cameraShakerService.Shake(0.6f, 1);
             _audioService.DuckMusic(0.05f, 1.25f);
         }
         private void CheckAttempts(int score)
