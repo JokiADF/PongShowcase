@@ -21,6 +21,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
             public const string Player = "Player";
             public const string Bot = "Bot";
             public const string Ball = "Ball";
+            public const string Explosion = "ExplosionObject";
         }
 
         public class UI
@@ -38,7 +39,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
             public const string Music = "Music";
             public const string Clash = "Clash";
             public const string Click = "Click";
-            public const string Explosion = "Explosion";
+            public const string Explosion = "ExplosionSound";
         }
     }
 }

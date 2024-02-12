@@ -2,6 +2,7 @@
 using _Project.CodeBase.Data.Configs;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Audio;
+using _Project.CodeBase.Services.Pool;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -15,15 +16,20 @@ namespace _Project.CodeBase.Core.Ball
         private BallConfig _ballConfig;
         
         private IAudioService _audioService;
+        private IPoolingService _poolingService;
+        private ExplosionBehaviour explosionPrefab;
 
-        public Vector3ReactiveProperty Position { get; } = new(); 
+        public Vector3ReactiveProperty Position { get; } = new();
 
         [Inject]
-        private void Construct(IAudioService audioService)
+        private void Construct(IAudioService audioService, IPoolingService poolingService, IAssetProvider assetProvider)
         {
             _audioService = audioService;
+            _poolingService = poolingService;
+            explosionPrefab = assetProvider.Get<GameObject>(AssetName.Objects.Explosion)
+                .GetComponent<ExplosionBehaviour>();
         }
-        
+
         public void Initialize(BallConfig ballConfig)
         {
             _ballConfig = ballConfig;
@@ -72,7 +78,9 @@ namespace _Project.CodeBase.Core.Ball
         private void Clash(Vector3 normal)
         {
             _velocity += normal.normalized * _ballConfig.bounceStrength;
+            
             _audioService.PlaySfx(AssetName.Audio.Clash, 0.5f);
+            _poolingService.Spawn(explosionPrefab, transform.position);
         }
     }
 }

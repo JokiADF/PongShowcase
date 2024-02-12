@@ -10,6 +10,7 @@ using _Project.CodeBase.Services.Audio;
 using _Project.CodeBase.Services.Audio.Factory;
 using _Project.CodeBase.Services.Input;
 using _Project.CodeBase.Services.Log;
+using _Project.CodeBase.Services.Pool;
 using _Project.CodeBase.Services.StaticData;
 using _Project.CodeBase.Services.Storage;
 using _Project.CodeBase.UI.Services.Factory;
@@ -110,6 +111,10 @@ namespace _Project.CodeBase.Installers
 
             Container
                 .BindInterfacesAndSelfTo<AudioService>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<PoolingService>()
                 .AsSingle();
         }
 
