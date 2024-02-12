@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 3436546762246630549}
   - component: {fileID: 8496691423269167430}
   - component: {fileID: 3436546762246630548}
+  - component: {fileID: 6273334171660890540}
   m_Layer: 0
   m_Name: Button ToHUD
   m_TagString: Untagged
@@ -187,6 +188,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 8496691423269167430}
   screenId: 3
+--- !u!114 &6273334171660890540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641015382792818791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a84a3062b5f4c88b210b166f5a35eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 8496691423269167430}
 --- !u!1 &4306033010544380308
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +618,7 @@ GameObject:
   - component: {fileID: 7846528950183854980}
   - component: {fileID: 7345672573545360788}
   - component: {fileID: 1683699210999673533}
+  - component: {fileID: 5260859584713067003}
   m_Layer: 0
   m_Name: Button ToScoreTable
   m_TagString: Untagged
@@ -727,3 +742,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7345672573545360788}
   screenId: 2
+--- !u!114 &5260859584713067003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819210861652421729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a84a3062b5f4c88b210b166f5a35eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7345672573545360788}

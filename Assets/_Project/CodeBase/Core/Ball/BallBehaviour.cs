@@ -1,7 +1,10 @@
 ﻿using System;
 using _Project.CodeBase.Data.Configs;
+using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Services.Audio;
 using UniRx;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.CodeBase.Core.Ball
@@ -10,9 +13,17 @@ namespace _Project.CodeBase.Core.Ball
     {
         private Vector3 _velocity;
         private BallConfig _ballConfig;
+        
+        private IAudioService _audioService;
 
         public Vector3ReactiveProperty Position { get; } = new(); 
 
+        [Inject]
+        private void Construct(IAudioService audioService)
+        {
+            _audioService = audioService;
+        }
+        
         public void Initialize(BallConfig ballConfig)
         {
             _ballConfig = ballConfig;
@@ -58,7 +69,10 @@ namespace _Project.CodeBase.Core.Ball
             Position.Value = transform.position;
         }
 
-        private void Clash(Vector3 normal) => 
+        private void Clash(Vector3 normal)
+        {
             _velocity += normal.normalized * _ballConfig.bounceStrength;
+            _audioService.PlaySfx(AssetName.Audio.Clash, 0.5f);
+        }
     }
 }

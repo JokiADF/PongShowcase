@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: fcba571fff7743b4bb5ce8b869f5799d
   m_currentHash:
     serializedVersion: 2
-    Hash: e46bed075ba744a16794ec38037a0a38
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
     - Configs
     - GameplayState
     - UI
+    - Audio
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9be25cfc2ebe3a14f9fb1c7ba997284e, type: 2}

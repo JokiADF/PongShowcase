@@ -3,7 +3,6 @@ using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Audio.Factory;
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.Services.StaticData;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -14,28 +13,44 @@ namespace _Project.CodeBase.Services.Audio
         private readonly IAudioFactory _audioFactory;
         private readonly ILogService _log;
         private readonly IStaticDataService _staticData;
+        private readonly Camera _camera;
+
+        private readonly Dictionary<string, AudioClip> _clips = new();
 
         private float _musicVolume;
         private AudioSource _music;
 
-        private Transform _cameraTransform;
         private Tween _tween;
 
         private bool _isPlayingMusic;
 
         public AudioService(IAudioFactory audioFactory, 
             ILogService log,
-            IStaticDataService staticData)
+            IStaticDataService staticData,
+            Camera camera)
         {
             _audioFactory = audioFactory;
             _log = log;
             _staticData = staticData;
+            _camera = camera;
         }
 
         public void Initialize()
         {
             CreateMusic();
+            CreateSfxClips();
             _musicVolume = _staticData.Audio.musicVolume;
+        }
+
+        public void PlaySfx(string key, float volume)
+        {
+            if (!_clips.TryGetValue(key, out var clip))
+            {
+                _log.LogError("Couldn't find the clip");
+                return;
+            }
+
+            AudioSource.PlayClipAtPoint(clip, _camera.transform.position, volume);
         }
 
         public void PlayMusic()
@@ -95,6 +110,13 @@ namespace _Project.CodeBase.Services.Audio
             _music.spatialBlend = 0;
             _music.volume = 0;
             _music.loop = true;
+        }
+        
+        private void CreateSfxClips()
+        {
+            _clips.Add(AssetName.Audio.Clash, _audioFactory.GetClip(AssetName.Audio.Clash));
+            _clips.Add(AssetName.Audio.Click, _audioFactory.GetClip(AssetName.Audio.Click));
+            _clips.Add(AssetName.Audio.Explosion, _audioFactory.GetClip(AssetName.Audio.Explosion));
         }
     }
 }

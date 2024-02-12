@@ -107,6 +107,30 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8998c9932dda574459fba60050b3a240
+    m_Address: Explosion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c337b01ef01b144ea78edeb0bf4f2ad
+    m_Address: Clash
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c058b52a2b3de143b96a100482aeb1a
+    m_Address: Click
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0069d7a9211000458a43e4a0e9cd19a
+    m_Address: Music
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8833391dee0517b4891ef59b4ffcfb52, type: 2}
   m_SchemaSet:

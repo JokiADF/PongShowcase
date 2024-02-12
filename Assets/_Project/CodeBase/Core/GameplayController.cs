@@ -2,6 +2,7 @@
 using _Project.CodeBase.Core.Racket;
 using _Project.CodeBase.Core.Services.BallTracker;
 using _Project.CodeBase.Core.Services.GameScoring;
+using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Services.Audio;
 using _Project.CodeBase.Services.StaticData;
 using _Project.CodeBase.UI.Services.Screens;
@@ -98,6 +99,7 @@ namespace _Project.CodeBase.Core
 
         private void RetakeFlyBall()
         {
+            _audioService.PlaySfx(AssetName.Audio.Explosion, 0.5f);
             _ball.TakeFly();
         }
 

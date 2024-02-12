@@ -22,6 +22,7 @@ namespace _Project.CodeBase.Installers
 {
     public class ProjectInstaller : MonoInstaller
     {
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private LoadingCurtain prefab;
     
         public override void InstallBindings()
@@ -35,6 +36,8 @@ namespace _Project.CodeBase.Installers
             BindServices();
         
             BindGameStateMachine();
+
+            BindCamera();
         }
 
         private void BindSceneLoader()
@@ -117,6 +120,14 @@ namespace _Project.CodeBase.Installers
                 .AsSingle();
             Container
                 .Bind<StatesFactory>()
+                .AsSingle();
+        }
+
+        private void BindCamera()
+        {
+            Container
+                .BindInterfacesAndSelfTo<Camera>()
+                .FromInstance(mainCamera)
                 .AsSingle();
         }
     }
