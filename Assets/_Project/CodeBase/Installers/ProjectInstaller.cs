@@ -19,7 +19,6 @@ using _Project.CodeBase.UI.Services.Factory;
 using _Project.CodeBase.UI.Services.Scoreboard;
 using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using Zenject;
 
 namespace _Project.CodeBase.Installers
@@ -27,7 +26,6 @@ namespace _Project.CodeBase.Installers
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private Camera mainCamera;
-        [SerializeField] private PostProcessVolume postProcessVolume;
         [SerializeField] private LoadingCurtain prefab;
     
         public override void InstallBindings()
@@ -143,10 +141,6 @@ namespace _Project.CodeBase.Installers
             Container
                 .Bind<Camera>()
                 .FromInstance(mainCamera)
-                .AsSingle();
-            Container
-                .Bind<PostProcessVolume>()
-                .FromInstance(postProcessVolume)
                 .AsSingle();
         }
     }
