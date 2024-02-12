@@ -11,5 +11,6 @@ namespace _Project.CodeBase.UI.Services.Factory
     
     ScreenBase CreateWindow(ScreenId screenId);
     ScoreItemText CreateScoreItemText(Transform parent);
+    VignetteDamage CreateVignetteDamage();
   }
 }

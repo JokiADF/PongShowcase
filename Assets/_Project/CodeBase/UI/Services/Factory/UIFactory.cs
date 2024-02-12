@@ -15,14 +15,14 @@ namespace _Project.CodeBase.UI.Services.Factory
         
         private readonly IInstantiator _instantiator;
         private readonly IAssetProvider _assets;
-        private readonly IStaticDataService _staticData;
         private readonly ILogService _log;
+        
+        private ScreenBase _hud;
 
-        public UIFactory(IInstantiator instantiator, IAssetProvider assets, IStaticDataService staticData, ILogService log)
+        public UIFactory(IInstantiator instantiator, IAssetProvider assets, ILogService log)
         {
             _instantiator = instantiator;
             _assets = assets;
-            _staticData = staticData;
             _log = log;
         }
 
@@ -37,10 +37,11 @@ namespace _Project.CodeBase.UI.Services.Factory
             {
                 case ScreenId.Menu: assetName = AssetName.UI.Menu; break;
                 case ScreenId.ScoreTable: assetName = AssetName.UI.Scoreboard; break;
-                case ScreenId.HUD: assetName = AssetName.UI.HUD; break;
+                case ScreenId.HUD: return CreateHUD();
                 case ScreenId.Result: assetName = AssetName.UI.Result; break;
                 default: _log.LogError("Not correct id"); break;
             }
+            
             var screen = InstantiatePrefabForComponent<ScreenBase>(assetName, _uiRoot);
             
             return screen;
@@ -49,6 +50,16 @@ namespace _Project.CodeBase.UI.Services.Factory
         public ScoreItemText CreateScoreItemText(Transform parent) =>
             InstantiatePrefabForComponent<ScoreItemText>(AssetName.UI.ScoreItemText, parent);
 
+        public VignetteDamage CreateVignetteDamage() =>
+            InstantiatePrefabForComponent<VignetteDamage>(AssetName.UI.VignetteDamage, CreateHUD().transform);
+
+        private ScreenBase CreateHUD()
+        {
+            if(_hud == null)
+                _hud = InstantiatePrefabForComponent<ScreenBase>(AssetName.UI.HUD, _uiRoot);
+            
+            return _hud;
+        }
 
         private GameObject InstantiatePrefab(string assetName)
         {

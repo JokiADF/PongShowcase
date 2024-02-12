@@ -1,4 +1,5 @@
-﻿using _Project.CodeBase.Infrastructure.AssetManagement;
+﻿using _Project.CodeBase.Core.Services.Vignette;
+using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Infrastructure.Factory;
 using _Project.CodeBase.Infrastructure.SceneManagement;
 using _Project.CodeBase.Infrastructure.SceneManagement.UI;
@@ -16,6 +17,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
         private readonly IAudioService _audioService;
+        private readonly IVignetteSystem _vignetteSystem;
 
         public GameLoadingState(GameStateMachine gameStateMachine,
             ILoadingCurtain loadingCurtain, 
@@ -23,7 +25,8 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             IAssetProvider assetProvider,
             IGameFactory gameFactory,
             IUIFactory uiFactory,
-            IAudioService audioService)
+            IAudioService audioService,
+            IVignetteSystem vignetteSystem)
         {
             _gameStateMachine = gameStateMachine;
             _loadingCurtain = loadingCurtain;
@@ -32,6 +35,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             _gameFactory = gameFactory;
             _uiFactory = uiFactory;
             _audioService = audioService;
+            _vignetteSystem = vignetteSystem;
         }
         
         public async void Enter()
@@ -65,6 +69,7 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             _gameFactory.CreateGameplayController();
             _uiFactory.CreateUIRoot();
             _audioService.Initialize();
+            _vignetteSystem.Initialize();
         }
 
         private void EnterGameplayState() => _gameStateMachine.Enter<GameplayState>();

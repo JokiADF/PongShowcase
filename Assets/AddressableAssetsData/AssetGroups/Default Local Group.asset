@@ -143,6 +143,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameplayState
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 458842b351e7fa14ba15d1c07c7deb63
+    m_Address: VignetteDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8833391dee0517b4891ef59b4ffcfb52, type: 2}
   m_SchemaSet:

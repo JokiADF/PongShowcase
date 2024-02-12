@@ -1,5 +1,6 @@
 using _Project.CodeBase.Core.Services.BallTracker;
 using _Project.CodeBase.Core.Services.GameScoring;
+using _Project.CodeBase.Core.Services.Vignette;
 using _Project.CodeBase.Gameplay.Services.CameraShake;
 using _Project.CodeBase.Infrastructure.AssetManagement;
 using _Project.CodeBase.Infrastructure.Factory;
@@ -18,6 +19,7 @@ using _Project.CodeBase.UI.Services.Factory;
 using _Project.CodeBase.UI.Services.Scoreboard;
 using _Project.CodeBase.UI.Services.Screens;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using Zenject;
 
 namespace _Project.CodeBase.Installers
@@ -25,6 +27,7 @@ namespace _Project.CodeBase.Installers
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private PostProcessVolume postProcessVolume;
         [SerializeField] private LoadingCurtain prefab;
     
         public override void InstallBindings()
@@ -105,6 +108,9 @@ namespace _Project.CodeBase.Installers
             Container
                 .BindInterfacesAndSelfTo<CameraShakerService>()
                 .AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<VignetteSystem>()
+                .AsSingle();
 
             Container
                 .BindInterfacesAndSelfTo<ScreenService>()
@@ -135,8 +141,12 @@ namespace _Project.CodeBase.Installers
         private void BindCamera()
         {
             Container
-                .BindInterfacesAndSelfTo<Camera>()
+                .Bind<Camera>()
                 .FromInstance(mainCamera)
+                .AsSingle();
+            Container
+                .Bind<PostProcessVolume>()
+                .FromInstance(postProcessVolume)
                 .AsSingle();
         }
     }
