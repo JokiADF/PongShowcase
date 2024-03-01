@@ -13,7 +13,7 @@ The purpose of this project is to demonstrate my skills as a developer.
 This project is a rewritten version of my old [project](https://github.com/JokiADF/PongMVPShowcaseOld). 
 The basic mechanics remain the same, only the architectural aspects have changed. All changes are described in Changes.
 
-The project was realised on my template, [MyTemplateForU](https://github.com/JokiADF/MyTemplateForU).
+The project was realised on my template, [TemplateForU](https://github.com/JokiADF/TemplateForU).
 
 ## Mechanics
 * Basic application architecture:
